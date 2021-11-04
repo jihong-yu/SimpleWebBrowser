@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         //휴대폰 키보드 엔터키(Action) 리스너. v에는 해당 view가 반환, actionId에는 해당 actionId가 반환
         addressBar.setOnEditorActionListener { v, actionId, event ->
 
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
+            if (actionId == EditorInfo.IME_ACTION_GO) {
                 val loadingUrl = v.text.toString()
                 //만약 URL에 https 나 http 가 존재하지 않는다면
                 if (URLUtil.isValidUrl(loadingUrl)) {//(주소가 Url형식인지 체크)
@@ -117,8 +117,6 @@ class MainActivity : AppCompatActivity() {
             super.onProgressChanged(view, newProgress)
             //현재 로딩정도를 컨텐트 프로그레스바에 대입
             progressBar.progress = newProgress
-
-            Toast.makeText(this@MainActivity, "$newProgress", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -129,7 +127,7 @@ class MainActivity : AppCompatActivity() {
         //페이지 로딩이 시작되었을 때
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
-            Log.d("TAG", "onPageStarted: ")
+
             //로딩 프로그레스 바를 보여준다.
             progressBar.show()
 
@@ -138,13 +136,13 @@ class MainActivity : AppCompatActivity() {
         //페이지 로딩이 완료되었을 때(2nd url에는 완전한 full 주소가 인자로 넘어옴)
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
-            Log.d("TAG", "onPageFinished: ")
+
             //리프레싱 되고 있다는 동그라미 표시를 false를 주면서 없앤다.
             refreshLayout.isRefreshing = false
 
             //로딩 프로그레스 바를 뷰에서 없앤다.
             progressBar.hide()
-            
+
             //주소창에 full 주소 표시하기
             addressBar.setText(url)
 

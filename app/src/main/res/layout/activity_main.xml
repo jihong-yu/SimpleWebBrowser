@@ -36,7 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="32dp"
             android:background="@drawable/shape_address_bar"
-            android:imeOptions="actionDone"
+            android:imeOptions="actionGo"
             android:importantForAutofill="no"
             android:inputType="textUri"
             android:paddingHorizontal="16dp"
