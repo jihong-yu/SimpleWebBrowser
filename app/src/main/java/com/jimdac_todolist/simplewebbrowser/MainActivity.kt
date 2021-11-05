@@ -56,6 +56,18 @@ class MainActivity : AppCompatActivity() {
         bindViews()
     }
 
+    //뒤로가기 버튼 처리
+    override fun onBackPressed() {
+        //만약 웹뷰에서 뒤로갈 수 있다면
+        if(webView.canGoBack()){
+            //웹뷰에서 뒤로가기를 처리
+            webView.goBack()
+            //뒤로갈 페이지가 없다면
+        } else {
+            //휴대폰 내에서 뒤로가기 처리(앱종료)
+            super.onBackPressed()
+        }
+    }
     //뷰에 기능 추가
     private fun bindViews() {
 
